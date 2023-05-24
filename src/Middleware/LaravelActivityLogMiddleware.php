@@ -4,7 +4,6 @@ namespace Cetiia\LaravelActivityLog\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class LaravelActivityLogMiddleware
 {
@@ -22,8 +21,7 @@ class LaravelActivityLogMiddleware
     
         // Save log as CSV
         $csvData = implode(',', $logData);
-        $csvRow = Str::endsWith($csvData, "\n") ? $csvData : $csvData . "\n";
-        Storage::append('logs/activity.csv', $csvRow);
+        Storage::append('logs/activity.csv', $csvData);
         return $next($request);
     }
 }
