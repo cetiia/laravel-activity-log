@@ -13,10 +13,12 @@ class LaravelActivityLogMiddleware
         
         if ($request->ip() != '127.0.0.1') {
             $data = Http::get('http://ip-api.com/json/' . $request->ip())->json();
-            dd($data);
             $logData = [
                 'user' => $request->user() ? $request->user()->name : 'anonymous',
                 'ip' => $request->ip(),
+                'country'=>$data['country'] ?? null,
+                'state '=>$data['regionName'] ?? null,
+                'city '=>$data['city'] ?? null,
                 'path' => $request->path(),
                 'method' => $request->method(),
                 'date' => date('Y-m-d'),

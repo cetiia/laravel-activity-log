@@ -28,6 +28,9 @@
                 <tr>
                     <td>{{ $log['user'] }}</td>
                     <td>{{ $log['ip'] }}</td>
+                    <td>{{ $log['country'] }}</td>
+                    <td>{{ $log['state'] }}</td>
+                    <td>{{ $log['city'] }}</td>
                     <td>{{ $log['path'] }}</td>
                     <td>{{ $log['method'] }}</td>
                     <td>{{ $log['date'] }}</td>
