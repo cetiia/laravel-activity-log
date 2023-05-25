@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <a href="{{route('download-activity-log')}}" target="_blank" rel="noopener noreferrer">Download</a>
+    <button type="button" onclick="download()">Download</button>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -44,7 +44,24 @@
             @endforeach
         </tbody>
     </table>
-
+    <script>
+        function download() {
+            var elt = document.querySelector('table');
+            var wb = XLSX.utils.table_to_book(elt, {
+                sheet: "Log"
+            });
+            return dl ?
+                XLSX.write(wb, {
+                    bookType: 'xlsx',
+                    bookSST: true,
+                    type: 'base64'
+                }) :
+                XLSX.writeFile(wb, fn || ('ActivityLog.xlsx'));
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"
+        integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
