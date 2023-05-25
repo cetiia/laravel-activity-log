@@ -13,3 +13,15 @@ You can install the package via composer:
 composer require cetiia/laravel-activity-log
 ```
 
+You can publish and run the migrations with:
+
+```bash
+php artisan vendor:publish --tag="laravel-activity-log-migrations"
+php artisan migrate
+```
+
+Optionally, you can publish the views using
+
+```bash
+php artisan vendor:publish --tag="laravel-activity-log-views"
+```
