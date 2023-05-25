@@ -16,7 +16,7 @@ composer require cetiia/laravel-activity-log
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-activity-log-migrations"
+php artisan vendor:publish --tag="activity-log-migrations"
 php artisan migrate
 ```
 
