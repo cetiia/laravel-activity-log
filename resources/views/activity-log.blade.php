@@ -50,13 +50,11 @@
             var wb = XLSX.utils.table_to_book(elt, {
                 sheet: "Log"
             });
-            return dl ?
-                XLSX.write(wb, {
+            return  XLSX.write(wb, {
                     bookType: 'xlsx',
                     bookSST: true,
                     type: 'base64'
-                }) :
-                XLSX.writeFile(wb, fn || ('ActivityLog.xlsx'));
+                });
         }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"
