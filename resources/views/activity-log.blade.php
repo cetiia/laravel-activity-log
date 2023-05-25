@@ -12,7 +12,7 @@
 
 <body>
     <button type="button" onclick="download()">Download</button>
-    <table class="table table-striped">
+    <table class="table table-striped" id="TableToExport">
         <thead>
             <tr>
                 <th>User</th>
@@ -46,20 +46,13 @@
     </table>
     <script>
         function download() {
-            var elt = document.querySelector('table');
-            var wb = XLSX.utils.table_to_book(elt, {
-                sheet: "Log"
-            });
-            return  XLSX.write(wb, {
-                    bookType: 'xlsx',
-                    bookSST: true,
-                    type: 'base64'
-                });
+            /* Create worksheet from HTML DOM TABLE */
+            var wb = XLSX.utils.table_to_book(document.getElementById("TableToExport"));
+            /* Export to file (start a download) */
+            XLSX.writeFile(wb, "SheetJSTable.xlsx");
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"
-        integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
