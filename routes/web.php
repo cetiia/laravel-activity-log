@@ -1,41 +1,23 @@
 <?php
 
+use Cetiia\LaravelActivityLog\Models\Log;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/activity-log', function () {
 
-    $logData = Storage::get('logs/activity.csv');
-    $logRows = explode("\n", $logData);
-    $logs = [];
-
-    foreach ($logRows as $row) {
-        $logFields = explode(',', $row);
-        if (count($logFields) > 1) {
-            $logs[] = [
-                'user' => $logFields[0],
-                'ip' => $logFields[1],
-                'country' => $logFields[2],
-                'state' => $logFields[3],
-                'city' => $logFields[4],
-                'path' => $logFields[5],
-                'method' => $logFields[6],
-                'date' => $logFields[7],
-                'time' => $logFields[8],
-                'browser' => $logFields[9],
-            ];
-        }
-    }
+    $logs = Log::records();
 
     return view('laravel-activity-log::activity-log', compact('logs'));
 })->name('activity-log');
 
+
 Route::get('/activity-log/download', function () {
-    $filePath = 'logs/activity.csv';
-
-    if (!Storage::exists($filePath)) {
-        abort(404);
-    }
-
-    return Storage::download($filePath, 'activity-log.csv');
+    $logs = Log::records();
+    return Excel::download(function ($excel) use ($logs) {
+        $excel->setTitle('Data Export')
+              ->sheet('Sheet 1', function ($sheet) use ($logs) {
+                  $sheet->fromArray($logs, null, 'A1', false, false);
+              });
+    }, 'exported-data.xls');
 })->name('download-activity-log');
