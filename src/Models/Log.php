@@ -46,6 +46,6 @@ class Log extends Model
             }
         }
 
-        return $logs->sortByDesc('date');
+        return $logs->sortByDesc('time')->sortByDesc('date');
     }
 }
