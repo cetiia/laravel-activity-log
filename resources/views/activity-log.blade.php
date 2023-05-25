@@ -46,10 +46,13 @@
     </table>
     <script>
         function download() {
-            /* Create worksheet from HTML DOM TABLE */
-            var wb = XLSX.utils.table_to_book(document.getElementById("TableToExport"));
-            /* Export to file (start a download) */
-            XLSX.writeFile(wb, "SheetJSTable.xlsx");
+            // Convert the table to a worksheet
+            var ws = XLSX.utils.table_to_sheet(document.getElementById("TableToExport"));
+            // Create workbook and add the worksheet
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Logs");
+            // Download
+            XLSX.writeFile(wb, "ActivityLog.xlsx");
         }
     </script>
     <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
