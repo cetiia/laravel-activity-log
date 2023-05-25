@@ -32,6 +32,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Cetiia\\LaravelActivityLog\\Models\\": "src/Models/",
             "Cetiia\\LaravelActivityLog\\": "src/",
             "Cetiia\\LaravelActivityLog\\Database\\Factories\\": "database/factories/"
         }
