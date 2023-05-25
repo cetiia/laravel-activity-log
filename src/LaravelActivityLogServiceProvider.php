@@ -16,7 +16,8 @@ class LaravelActivityLogServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-activity-log')
             ->hasRoute('web')
-            ->hasViews('laravel-activity-log');
+            ->hasViews('laravel-activity-log')
+            ->hasMigrations(array('create_logs_table'));
     }
 
     public function bootingPackage()

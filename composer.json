@@ -1,7 +1,7 @@
 {
     "name": "cetiia/laravel-activity-log",
     "description": "This package is for collect all activity log",
-    "version": "v0.0.1",
+    "version": "v0.0.2",
     "type": "laravel-package",
     "keywords": [
         "Cetiia",

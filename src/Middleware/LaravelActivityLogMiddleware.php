@@ -2,17 +2,22 @@
 
 namespace Cetiia\LaravelActivityLog\Middleware;
 
+use Cetiia\LaravelActivityLog\Models\Log;
 use Closure;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Schema;
 
 class LaravelActivityLogMiddleware
 {
     public function handle($request, Closure $next)
     {
-        
-        if ($request->ip() != '127.0.0.1') {
-            $data = Http::get('http://ip-api.com/json/' . $request->ip())->json();
+        if (Schema::hasTable('logs')) {
+            if ($request->ip() != '127.0.0.1') {
+                $data = Http::get('http://ip-api.com/json/' . $request->ip())->json();
+            }else{
+                $data = [];
+            }
+    
             $logData = [
                 'user' => $request->user() ? $request->user()->name : 'anonymous',
                 'ip' => $request->ip(),
@@ -25,11 +30,12 @@ class LaravelActivityLogMiddleware
                 'time' => date('H:i:s'),
                 'browser' => $request->header('User-Agent'),
             ];
-        
-            // Save log as CSV
-            $csvData = implode(',', $logData);
-            Storage::append('logs/activity.csv', $csvData);
+            Log::create($logData);
+        } else {
+            dump('Need to migrate logs table');
         }
+        
+
         return $next($request);
     }
 }
