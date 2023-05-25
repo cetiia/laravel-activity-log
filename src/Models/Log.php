@@ -43,6 +43,7 @@ class Log extends Model
                 ];
             }
         }
+        $logs = collect($logs)->sortByDesc('date');
         return $logs;
     }
 }
