@@ -16,6 +16,9 @@
             <tr>
                 <th>User</th>
                 <th>IP</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
                 <th>Path</th>
                 <th>Method</th>
                 <th>Date</th>

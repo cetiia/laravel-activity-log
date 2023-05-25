@@ -13,11 +13,14 @@ Route::get('/activity-log', function () {
             $logs[] = [
                 'user' => $logFields[0],
                 'ip' => $logFields[1],
-                'path' => $logFields[2],
-                'method' => $logFields[3],
-                'date' => $logFields[4],
-                'time' => $logFields[5],
-                'browser' => $logFields[6],
+                'country' => $logFields[2],
+                'state' => $logFields[3],
+                'city' => $logFields[4],
+                'path' => $logFields[5],
+                'method' => $logFields[6],
+                'date' => $logFields[7],
+                'time' => $logFields[8],
+                'browser' => $logFields[9],
             ];
         }
     }
