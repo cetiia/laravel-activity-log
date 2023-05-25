@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <a href="{{route('download-activity-log')}}" target="_blank" rel="noopener noreferrer">Download</a>
     <table class="table table-striped">
         <thead>
             <tr>
