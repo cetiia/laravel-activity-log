@@ -30,16 +30,16 @@
         <tbody>
             @foreach ($logs as $log)
                 <tr>
-                    <td>{{ $log['user'] }}</td>
-                    <td>{{ $log['ip'] }}</td>
-                    <td>{{ $log['country'] }}</td>
-                    <td>{{ $log['state'] }}</td>
-                    <td>{{ $log['city'] }}</td>
-                    <td>{{ $log['path'] }}</td>
-                    <td>{{ $log['method'] }}</td>
-                    <td>{{ $log['date'] }}</td>
-                    <td>{{ $log['time'] }}</td>
-                    <td>{{ $log['browser'] }}</td>
+                    <td>{{ $log->user }}</td>
+                    <td>{{ $log->ip }}</td>
+                    <td>{{ $log->country }}</td>
+                    <td>{{ $log->state }}</td>
+                    <td>{{ $log->city }}</td>
+                    <td>{{ $log->path }}</td>
+                    <td>{{ $log->method }}</td>
+                    <td>{{ $log->date }}</td>
+                    <td>{{ $log->time }}</td>
+                    <td>{{ $log->browser }}</td>
                 </tr>
             @endforeach
         </tbody>

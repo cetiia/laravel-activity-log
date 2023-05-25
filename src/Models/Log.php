@@ -24,12 +24,12 @@ class Log extends Model
     {
         $logData = Storage::get('logs/activity.csv');
         $logRows = explode("\n", $logData);
-        $logs = [];
+        $logs = collect();
 
         foreach ($logRows as $row) {
             $logFields = explode(',', $row);
             if (count($logFields) > 1) {
-                $logs[] = [
+                $log = new Log([
                     'user' => $logFields[0],
                     'ip' => $logFields[1],
                     'country' => $logFields[2],
@@ -40,10 +40,12 @@ class Log extends Model
                     'date' => $logFields[7],
                     'time' => $logFields[8],
                     'browser' => $logFields[9],
-                ];
+                ]);
+
+                $logs->push($log);
             }
         }
-        $logs = collect($logs)->sortByDesc('date');
-        return $logs;
+
+        return $logs->sortByDesc('date');
     }
 }
