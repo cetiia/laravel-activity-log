@@ -13,7 +13,11 @@ class LaravelActivityLogMiddleware
     {
         if (Schema::hasTable('logs')) {
             if ($request->ip() != '127.0.0.1') {
-                $data = Http::get('http://ip-api.com/json/' . $request->ip())->json();
+                try {
+                    $data = Http::timeout(2)->get('http://ip-api.com/json/' . $request->ip())->json();
+                } catch (\Throwable $th) {
+                    $data = [];
+                }
             }else{
                 $data = [];
             }

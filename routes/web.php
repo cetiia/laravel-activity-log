@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Schema;
 Route::get('/activity-log', function () {
     if (Gate::has('activity-log')) {
         Gate::authorize('activity-log');
+    }else{
+        dump('Unprotected route');
     }
     if (Schema::hasTable('logs')) {
         $logs = Log::get()->sortByDesc('time')->sortByDesc('date');
