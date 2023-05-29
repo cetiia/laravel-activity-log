@@ -25,3 +25,6 @@ Optionally, you can publish the views using
 ```bash
 php artisan vendor:publish --tag="laravel-activity-log-views"
 ```
+Usage
+
+> After migrate automatically save data to the logs table, You can the rute activity-log
