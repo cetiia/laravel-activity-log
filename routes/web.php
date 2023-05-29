@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 Route::get('/activity-log', function () {
     if (Schema::hasTable('logs')) {
-        $logs = Log::get()->sortBy('time')->sortBy('date');
+        $logs = Log::get()->sortBy('date')->sortBy('time');
     } else {
         // Table does not exist
         $logs = [];
