@@ -29,7 +29,7 @@ Usage
 
 > After migrate automatically save data to the logs table, You can see the route activity-log
 
-Protect the route: Add 
+Protect the route: Add to app/Providers/AuthServiceProvider.php in boot method
 
 ```php
 Gate::define('activity-log', function (User $user) {
