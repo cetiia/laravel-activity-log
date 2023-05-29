@@ -28,3 +28,13 @@ php artisan vendor:publish --tag="laravel-activity-log-views"
 Usage
 
 > After migrate automatically save data to the logs table, You can see the route activity-log
+
+Protect the route: Add 
+
+```php
+Gate::define('activity-log', function (User $user) {
+    // add logic to validate if user can access to route
+    // Example using novatopro/lrp (Laravel role permission)
+    // return $user->can('access','activity-log'); // activity-log is permission slug
+});
+```
